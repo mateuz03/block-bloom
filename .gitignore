@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.pnpm-store/
+.agents/
+.env
+.env.*
+keystores/
+*.jks
+*.keystore

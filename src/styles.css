@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap");
+
+:root {
+  font-family: "Fredoka", system-ui, sans-serif;
+  color: #3e3652;
+  background: #eee9ff;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html, body, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; touch-action: none; }
+body {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.95) 0 3px, transparent 4px),
+    radial-gradient(circle at 82% 70%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+    linear-gradient(145deg, #f7f4ff, #dfd8fa);
+  background-size: 90px 90px, 70px 70px, auto;
+}
+button { font: inherit; border: 0; cursor: pointer; }
+#app, #game-root, #hud-root { position: fixed; inset: 0; }
+#game-root canvas { display: block; width: 100%; height: 100%; }
+#hud-root { z-index: 10; pointer-events: none; }
+.hud {
+  position: absolute; top: calc(env(safe-area-inset-top) + 18px); left: 20px; right: 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.brand { display: flex; align-items: center; gap: 9px; font-size: 14px; line-height: .9; letter-spacing: .04em; }
+.brand i { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg,#ff6b66 50%,#5796ff 50%); box-shadow: 0 5px 0 #c6bddf; transform: rotate(-7deg); }
+.brand strong { color: #ff665f; font-size: 18px; }
+.level-chip, .moves {
+  border: 2px solid white; border-radius: 16px; background: rgba(255,255,255,.66);
+  box-shadow: 0 6px 0 rgba(111,93,151,.15); text-align: center;
+}
+.level-selector { display: flex; align-items: center; gap: 7px; pointer-events: auto; }
+.level-arrow {
+  width: 34px; height: 42px; border: 2px solid white; border-radius: 13px;
+  background: rgba(255,255,255,.72); color: #65597f; font-size: 27px; line-height: 1;
+  box-shadow: 0 5px 0 rgba(111,93,151,.15);
+}
+.level-arrow:active, .icon-button:active { transform: translateY(2px); box-shadow: 0 3px 0 rgba(111,93,151,.15); }
+.level-chip { padding: 7px 18px; }
+.level-chip small, .moves small { display: block; color: #8f83aa; font-size: 10px; letter-spacing: .1em; }
+.level-chip strong { font-size: 19px; }
+.icon-button {
+  pointer-events: auto; width: 46px; height: 46px; border: 2px solid white; border-radius: 50%;
+  background: #7c6fa1; color: white; font-size: 28px; line-height: 1; box-shadow: 0 5px 0 #5c517d;
+}
+.moves { position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 18px); transform: translateX(-50%); min-width: 130px; padding: 8px 20px; }
+.moves strong { font-size: 24px; }
+.intro, .win {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 28px; text-align: center; pointer-events: auto; background: rgba(239,235,255,.78); backdrop-filter: blur(10px);
+  transition: opacity .25s, transform .25s;
+}
+.intro.hidden { opacity: 0; pointer-events: none; transform: scale(1.05); }
+.intro p, .win p { margin: 0 0 8px; color: #ff665f; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
+.intro h1, .win h2 { margin: 0 0 10px; font-size: clamp(42px, 10vw, 74px); line-height: .95; color: #493f64; }
+.intro span, .win span { max-width: 290px; color: #7e7396; }
+.intro button, .win button {
+  margin-top: 28px; min-width: 210px; padding: 15px 25px; border-radius: 18px;
+  background: #55d6a5; color: #263f39; font-weight: 700; font-size: 18px; box-shadow: 0 7px 0 #36a87d;
+}
+.win { opacity: 0; pointer-events: none; transform: scale(.88); background: rgba(239,235,255,.88); }
+.win.visible { opacity: 1; pointer-events: auto; transform: scale(1); }
+.win__burst { color: #ffc94a; font-size: 70px; animation: spin 3s linear infinite; }
+.win h2 { font-size: 48px; }
+.hint { position: absolute; bottom: 82px; left: 50%; width: max-content; max-width: 90%; transform: translateX(-50%); color: #877aa1; font-size: 12px; text-align: center; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-height: 620px) { .hint { display: none; } .moves { bottom: 8px; padding: 5px 16px; } }
+@media (max-width: 430px) {
+  .hud { left: 12px; right: 12px; }
+  .brand span { display: none; }
+  .level-chip { padding-inline: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { .intro, .win { transition: none; } .win__burst { animation: none; } }
