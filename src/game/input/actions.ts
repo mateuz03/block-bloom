@@ -1,1 +1,1 @@
-export type GameAction = "restart" | "previous-level" | "next-level";
+export type GameAction = "restart" | "undo" | "previous-level" | "next-level";

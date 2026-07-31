@@ -2,8 +2,8 @@
 
 ## Current Android Setup
 
-- App name: `Neon Switch`
-- App ID: `com.mateu.neonswitch`
+- App name: `Block Bloom`
+- App ID legado (mantido intencionalmente neste ciclo): `com.mateu.neonswitch`
 - Web assets: `dist/`
 - Android project: `android/`
 - Orientation: portrait
@@ -16,7 +16,7 @@
 - Android Studio with a JDK 21 runtime.
 - Android SDK platform 36 installed.
 
-The current machine has Java 17 on `PATH`, so the native Gradle bundle stops at `invalid source release: 21`. Open the project with a current Android Studio, or install/configure JDK 21 and set `JAVA_HOME` before running the bundle command.
+Configure `JAVA_HOME` para o JDK 21 do Android Studio antes de executar comandos Gradle. Alterar o applicationId exige migração coordenada do namespace Java e da configuração da Play Store; isso não foi feito nesta refatoração.
 
 ## Commands
 

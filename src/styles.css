@@ -32,21 +32,33 @@ button { font: inherit; border: 0; cursor: pointer; }
   box-shadow: 0 6px 0 rgba(111,93,151,.15); text-align: center;
 }
 .level-selector { display: flex; align-items: center; gap: 7px; pointer-events: auto; }
+.hud__actions { display: flex; align-items: center; gap: 7px; pointer-events: auto; }
 .level-arrow {
-  width: 34px; height: 42px; border: 2px solid white; border-radius: 13px;
+  width: 44px; height: 44px; border: 2px solid white; border-radius: 13px;
   background: rgba(255,255,255,.72); color: #65597f; font-size: 27px; line-height: 1;
   box-shadow: 0 5px 0 rgba(111,93,151,.15);
 }
 .level-arrow:active, .icon-button:active { transform: translateY(2px); box-shadow: 0 3px 0 rgba(111,93,151,.15); }
-.level-chip { padding: 7px 18px; }
+.level-chip { min-width: 88px; padding: 6px 12px; }
 .level-chip small, .moves small { display: block; color: #8f83aa; font-size: 10px; letter-spacing: .1em; }
 .level-chip strong { font-size: 19px; }
+.level-chip em {
+  display: block; max-width: 108px; overflow: hidden; color: #7e7396; font-size: 9px;
+  font-style: normal; line-height: 1.1; text-overflow: ellipsis; white-space: nowrap;
+}
 .icon-button {
   pointer-events: auto; width: 46px; height: 46px; border: 2px solid white; border-radius: 50%;
   background: #7c6fa1; color: white; font-size: 28px; line-height: 1; box-shadow: 0 5px 0 #5c517d;
 }
+.icon-button:disabled, .level-arrow:disabled, .win button:disabled {
+  cursor: default;
+  opacity: .45;
+  transform: none;
+}
 .moves { position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 18px); transform: translateX(-50%); min-width: 130px; padding: 8px 20px; }
 .moves strong { font-size: 24px; }
+.moves > span { display: block; color: #8f83aa; font-size: 10px; line-height: 1; }
+.moves > span b { color: #55a982; font-size: 12px; }
 .intro, .win {
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: 28px; text-align: center; pointer-events: auto; background: rgba(239,235,255,.78); backdrop-filter: blur(10px);
@@ -64,12 +76,20 @@ button { font: inherit; border: 0; cursor: pointer; }
 .win.visible { opacity: 1; pointer-events: auto; transform: scale(1); }
 .win__burst { color: #ffc94a; font-size: 70px; animation: spin 3s linear infinite; }
 .win h2 { font-size: 48px; }
+.win__stats { display: grid; grid-template-columns: repeat(3, 1fr); width: min(290px, 100%); gap: 8px; margin-top: 18px; }
+.win__stats span { border: 2px solid white; border-radius: 14px; background: rgba(255,255,255,.58); padding: 9px 5px; }
+.win__stats small { display: block; color: #8f83aa; font-size: 9px; letter-spacing: .08em; }
+.win__stats strong { color: #493f64; font-size: 23px; }
 .hint { position: absolute; bottom: 82px; left: 50%; width: max-content; max-width: 90%; transform: translateX(-50%); color: #877aa1; font-size: 12px; text-align: center; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-height: 620px) { .hint { display: none; } .moves { bottom: 8px; padding: 5px 16px; } }
-@media (max-width: 430px) {
+@media (max-width: 520px) {
   .hud { left: 12px; right: 12px; }
   .brand span { display: none; }
-  .level-chip { padding-inline: 13px; }
+  .level-selector { gap: 4px; }
+  .level-chip { min-width: 70px; padding-inline: 8px; }
+  .level-chip em { max-width: 72px; }
+  .icon-button { width: 44px; height: 44px; font-size: 23px; }
+  .hud__actions { gap: 4px; }
 }
 @media (prefers-reduced-motion: reduce) { .intro, .win { transition: none; } .win__burst { animation: none; } }

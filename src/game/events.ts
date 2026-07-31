@@ -2,10 +2,18 @@ import type { GameAction } from "./input/actions";
 
 export type PuzzleSnapshot = {
   level: number;
+  levelId: string;
+  levelName: string;
   totalLevels: number;
   moves: number;
+  idealMoves: number;
+  bestMoves?: number;
   remaining: number;
   won: boolean;
+  canUndo: boolean;
+  canGoPrevious: boolean;
+  canGoNext: boolean;
+  inputLocked: boolean;
 };
 
 type GameEventMap = {

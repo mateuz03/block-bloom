@@ -25,6 +25,14 @@ Abra `http://127.0.0.1:8080`.
 pnpm build:release
 ```
 
+## Testes
+
+```bash
+pnpm test
+```
+
+As regras do puzzle ficam no `PuzzleEngine`, independente do Phaser. O catálogo de fases é validado automaticamente ao criar o engine.
+
 ## Android
 
 Com Java 21, Android SDK e um aparelho autorizado por USB:

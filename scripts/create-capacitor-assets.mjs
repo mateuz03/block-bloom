@@ -48,7 +48,7 @@ const splashSvg = `
   <path d="M914 1240h904v104H914zM914 1488h904v104H914z" fill="#46f0b1"/>
   <circle cx="1218" cy="1292" r="98" fill="#ffcb4d"/>
   <circle cx="1514" cy="1540" r="98" fill="#ff4f88"/>
-  <text x="1366" y="1958" fill="#f4f7fb" font-family="Arial, sans-serif" font-size="140" font-weight="800" text-anchor="middle">Neon Switch</text>
+  <text x="1366" y="1958" fill="#f4f7fb" font-family="Arial, sans-serif" font-size="140" font-weight="800" text-anchor="middle">Block Bloom</text>
 </svg>`;
 
 await Promise.all([
