@@ -1,5 +1,7 @@
 # Block Bloom
 
+[![Quality Gate](https://github.com/mateuz03/block-bloom/actions/workflows/quality-gate.yml/badge.svg)](https://github.com/mateuz03/block-bloom/actions/workflows/quality-gate.yml)
+
 Puzzle 2D mobile-first inspirado em jogos de organização de blocos. Arraste cada peça até a saída da mesma cor, desviando dos outros blocos e tentando concluir cada fase com poucos movimentos.
 
 ## Recursos
@@ -31,6 +33,8 @@ pnpm build:release
 ## Testes
 
 ```bash
+pnpm typecheck
+pnpm lint
 pnpm test
 ```
 
