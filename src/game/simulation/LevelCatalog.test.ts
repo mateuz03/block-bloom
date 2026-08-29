@@ -3,9 +3,13 @@ import { solveLevel } from "./PuzzleSolver";
 import { levels, validateLevels } from "./puzzle";
 
 describe("catálogo vertical slice", () => {
-  it("contém exatamente 10 fases estruturalmente válidas", () => {
-    expect(levels).toHaveLength(10);
+  it("contém exatamente 15 fases estruturalmente válidas", () => {
+    expect(levels).toHaveLength(15);
     expect(validateLevels(levels)).toEqual([]);
+  });
+
+  it("preserva os mínimos comprovados das fases 1–10", () => {
+    expect(levels.slice(0, 10).map((level) => level.idealMoves)).toEqual([1, 2, 2, 3, 4, 5, 5, 8, 10, 10]);
   });
 
   for (const level of levels) {
@@ -20,7 +24,15 @@ describe("catálogo vertical slice", () => {
   }
 
   it("as fases de estacionamento exigem movimentos além de remover cada bloco", () => {
-    for (const level of levels.slice(4)) {
+    for (const level of levels.slice(4, 10)) {
+      const result = solveLevel(level);
+      expect(level.idealMoves).toBeGreaterThan(level.blocks.length);
+      expect(result.solution.some((move) => !move.exited)).toBe(true);
+    }
+  });
+
+  it("as fases 14 e 15 preservam estacionamento temporário", () => {
+    for (const level of levels.slice(13, 15)) {
       const result = solveLevel(level);
       expect(level.idealMoves).toBeGreaterThan(level.blocks.length);
       expect(result.solution.some((move) => !move.exited)).toBe(true);

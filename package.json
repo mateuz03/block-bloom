@@ -10,8 +10,10 @@
     "test": "vitest run",
     "lint": "eslint .",
     "dev": "vite --host 127.0.0.1 --port 8080",
+    "dev:playtest": "vite --mode playtest --host 127.0.0.1 --port 8080",
     "build": "tsc && vite build",
     "build:release": "tsc && vite build --mode release",
+    "build:playtest": "tsc && vite build --mode playtest",
     "preview": "vite preview --host 127.0.0.1 --port 8080",
     "assets:source": "node scripts/create-capacitor-assets.mjs",
     "android:add": "pnpm build:release && cap add android",
@@ -24,7 +26,9 @@
   },
   "dependencies": {
     "@capacitor/android": "^8.4.1",
+    "@capacitor/app": "8.1.1",
     "@capacitor/core": "^8.4.1",
+    "@capacitor/haptics": "^8.0.2",
     "phaser": "^3.88.2"
   },
   "devDependencies": {

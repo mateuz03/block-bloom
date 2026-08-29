@@ -61,6 +61,28 @@ describe("PuzzleEngine", () => {
     expect(engine.loadLevel("level-2")).toMatchObject({ levelId: "level-2", moves: 0, status: "playing", history: [] });
     expect(() => engine.loadLevel("missing")).toThrow("Fase desconhecida");
   });
+
+  it("restaura uma partida validada e mantém o Undo funcional", () => {
+    const source = new PuzzleEngine(levels, "level-2");
+    source.moveBlock("blue", 0, 2);
+    const restored = new PuzzleEngine(levels, "level-2");
+
+    expect(restored.restoreState(source.state)).toEqual(source.state);
+    expect(restored.undo().state).toMatchObject({
+      levelId: "level-2",
+      moves: 0,
+      status: "playing",
+    });
+  });
+
+  it("recusa restauração adulterada sem alterar o estado atual", () => {
+    const engine = new PuzzleEngine(levels, "level-2");
+    const invalid = engine.state;
+    invalid.blocks[0].col = 99;
+
+    expect(() => engine.restoreState(invalid)).toThrow("Estado salvo inválido");
+    expect(engine.state).toMatchObject({ levelId: "level-2", moves: 0 });
+  });
 });
 
 describe("validação estrutural", () => {

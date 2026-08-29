@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 export default defineConfig(({ mode }) => ({
   base: "./",
   build: {
-    minify: mode === "release" ? "esbuild" : false,
+    minify: mode === "release" || mode === "playtest" ? "esbuild" : false,
   },
   css: {
     postcss: {
