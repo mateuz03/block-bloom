@@ -74,6 +74,21 @@ describe("PlaytestRecorder", () => {
     });
   });
 
+  it("registra o rastreamento temporal de movimentos", () => {
+    const { recorder, advance } = createHarness();
+    recorder.beginRun("level-11");
+
+    advance(2500);
+    recorder.recordMove(1, 1);
+    advance(1300);
+    recorder.recordMove(2, 0);
+
+    expect(recorder.activeRun()?.moveTrace).toEqual([
+      { move: 1, atMs: 2500, activatedBloomCount: 1 },
+      { move: 2, atMs: 3800, activatedBloomCount: 0 },
+    ]);
+  });
+
   it("registra primeira Bloom com tempo, movimentos e restarts anteriores", () => {
     const { recorder, advance } = createHarness();
     recorder.beginRun("level-11");
