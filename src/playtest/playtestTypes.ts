@@ -7,6 +7,12 @@ export type PlaytestRunStatus =
   | "completed"
   | "abandoned";
 
+export type PlaytestMoveTrace = {
+  move: number;
+  atMs: number;
+  activatedBloomCount: number;
+};
+
 export type PlaytestSession = {
   id: string;
   startedAt: number;
@@ -31,6 +37,7 @@ export type PlaytestRun = {
   firstBloomAtMs?: number;
   movesBeforeFirstBloom?: number;
   restartsBeforeFirstBloom?: number;
+  moveTrace: PlaytestMoveTrace[];
   status: PlaytestRunStatus;
 };
 
