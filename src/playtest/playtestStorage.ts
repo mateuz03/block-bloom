@@ -2,6 +2,7 @@ import {
   PLAYTEST_DATA_VERSION,
   PLAYTEST_STORAGE_KEY,
   type PlaytestData,
+  type PlaytestMoveTrace,
   type PlaytestRun,
   type PlaytestRunStatus,
   type PlaytestSession,
@@ -12,6 +13,7 @@ const MAX_PLAYTEST_SESSIONS = 100;
 const MAX_SAVE_LENGTH = 2_000_000;
 const MAX_TIMESTAMP = 8_640_000_000_000_000;
 const MAX_COUNTER = 1_000_000_000;
+const MAX_MOVE_TRACE = 2_000;
 
 export type PlaytestStorage = Pick<
   Storage,
@@ -159,6 +161,7 @@ function normalizeRun(
   const restartsBeforeFirstBloom = normalizeOptionalCounter(
     value.restartsBeforeFirstBloom,
   );
+  const moveTrace = normalizeMoveTrace(value.moveTrace);
   return {
     id: value.id,
     sessionId: value.sessionId,
@@ -184,7 +187,30 @@ function normalizeRun(
     ...(restartsBeforeFirstBloom === undefined
       ? {}
       : { restartsBeforeFirstBloom }),
+    moveTrace,
     status: value.status,
+  };
+}
+
+function normalizeMoveTrace(value: unknown): PlaytestMoveTrace[] {
+  if (!Array.isArray(value)) return [];
+  const trace = value
+    .map((entry) => normalizeMoveTraceEntry(entry))
+    .filter((entry): entry is PlaytestMoveTrace => Boolean(entry))
+    .slice(-MAX_MOVE_TRACE);
+  return trace;
+}
+
+function normalizeMoveTraceEntry(value: unknown): PlaytestMoveTrace | undefined {
+  if (!isRecord(value)) return undefined;
+  const move = normalizeCounter(value.move);
+  const atMs = normalizeCounter(value.atMs);
+  const activatedBloomCount = normalizeCounter(value.activatedBloomCount);
+  if (move < 0 || atMs < 0 || activatedBloomCount < 0) return undefined;
+  return {
+    move,
+    atMs,
+    activatedBloomCount,
   };
 }
 
