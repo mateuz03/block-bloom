@@ -26,6 +26,10 @@ export type PhaseHintOpened = {
   levelId: string;
 };
 
+export type InvalidDropFeedback = {
+  reason: "blocked-by-vine" | "blocked-by-block" | "incompatible-exit";
+};
+
 export type PuzzleInteraction =
   | {
       type: "move";
@@ -37,6 +41,7 @@ export type PuzzleInteraction =
   | {
       type: "invalid-drop";
       levelId: string;
+      reason: InvalidDropFeedback["reason"];
     }
   | {
       type: "undo";
@@ -84,6 +89,7 @@ type GameEventMap = {
   "app-lifecycle-change": CustomEvent<AppLifecycleChange>;
   "tutorial-reset": CustomEvent<void>;
   "phase-hint-opened": CustomEvent<PhaseHintOpened>;
+  "invalid-drop-feedback": CustomEvent<InvalidDropFeedback>;
   "puzzle-interaction": CustomEvent<PuzzleInteraction>;
 };
 
@@ -184,6 +190,12 @@ export const emitTutorialReset = (): void => {
 
 export const emitPhaseHintOpened = (levelId: string): void => {
   gameEvents.dispatch("phase-hint-opened", { levelId });
+};
+
+export const emitInvalidDropFeedback = (
+  reason: InvalidDropFeedback["reason"],
+): void => {
+  gameEvents.dispatch("invalid-drop-feedback", { reason });
 };
 
 export const emitPuzzleInteraction = (
