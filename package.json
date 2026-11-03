@@ -1,0 +1,46 @@
+{
+  "name": "block-bloom",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@11.9.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "dev": "vite --host 127.0.0.1 --port 8080",
+    "dev:playtest": "vite --mode playtest --host 127.0.0.1 --port 8080",
+    "build": "tsc && vite build",
+    "build:release": "tsc && vite build --mode release",
+    "build:playtest": "tsc && vite build --mode playtest",
+    "preview": "vite preview --host 127.0.0.1 --port 8080",
+    "assets:source": "node scripts/create-capacitor-assets.mjs",
+    "android:add": "pnpm build:release && cap add android",
+    "android:assets": "pnpm assets:source && capacitor-assets generate --android",
+    "android:sync": "pnpm build:release && cap sync android",
+    "android:open": "cap open android",
+    "android:run": "pnpm android:sync && cap run android",
+    "android:bundle": "pnpm android:sync && cd android && gradlew.bat bundleRelease",
+    "mobile:notes": "node -e \"console.log('Use pnpm android:sync, test in Android Studio, then generate an Android App Bundle for Play Store.')\""
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/app": "8.1.1",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/haptics": "^8.0.2",
+    "phaser": "^3.88.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.4.1",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.65.0",
+    "vite": "^5.4.19",
+    "vitest": "3.2.4"
+  }
+}

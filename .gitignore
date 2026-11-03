@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.pnpm-store/
+.agents/
+.env
+.env.*
+keystores/
+*.jks
+*.keystore
+
+# Verdent / build
+.verdentc.json
+artifacts/
+android/app/build/
+android/.gradle/
+android/keystore.properties
+
+# Scripts temporários
+scripts/_*.txt
+scripts/_*.cjs
+scripts/_*.py
+
+# Arquivos espúrios
+{const
+

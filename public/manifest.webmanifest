@@ -1,0 +1,18 @@
+{
+  "name": "Block Bloom",
+  "short_name": "Bloom",
+  "description": "Puzzle mobile-first de blocos coloridos.",
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color": "#eee9ff",
+  "theme_color": "#eee9ff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
