@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: "block.example",
+  appId: "com.mateu.neonswitch",
   appName: "Block Bloom",
   webDir: "dist",
   backgroundColor: "#eee9ff",

@@ -9,10 +9,10 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "block.example"
+    namespace = "com.mateu.neonswitch"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "block.example"
+        applicationId "com.mateu.neonswitch"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2

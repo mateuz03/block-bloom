@@ -1,4 +1,4 @@
-package block.example;
+package com.mateu.neonswitch;
 
 import com.getcapacitor.BridgeActivity;
 
